@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	humanize "github.com/dustin/go-humanize"
+	humanize "github.com/AtomicNibble/go-humanize"
 )
 
 // These are included because they are common technical terms.
