@@ -7,7 +7,7 @@ import (
 func TestByteParsing(t *testing.T) {
 	tests := []struct {
 		in  string
-		exp uint64
+		exp int64
 	}{
 		{"42", 42},
 		{"42MB", 42000000},
@@ -43,9 +43,9 @@ func TestByteParsing(t *testing.T) {
 		{"1,005.03 MB", 1005030000},
 		// Large testing, breaks when too much larger than
 		// this.
-		{"12.5 EB", uint64(12.5 * float64(EByte))},
-		{"12.5 E", uint64(12.5 * float64(EByte))},
-		{"12.5 EiB", uint64(12.5 * float64(EiByte))},
+		// {"12.5 EB", int64(12.5 * float64(EByte))},
+		// {"12.5 E", int64(12.5 * float64(EByte))},
+		// {"12.5 EiB", int64(12.5 * float64(EiByte))},
 	}
 
 	for _, p := range tests {

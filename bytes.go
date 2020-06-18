@@ -65,7 +65,7 @@ func logn(n, b float64) float64 {
 	return math.Log(n) / math.Log(b)
 }
 
-func humanateBytes(s uint64, base float64, sizes []string) string {
+func humanateBytes(s int64, base float64, sizes []string) string {
 	if s < 10 {
 		return fmt.Sprintf("%d B", s)
 	}
@@ -85,7 +85,7 @@ func humanateBytes(s uint64, base float64, sizes []string) string {
 // See also: ParseBytes.
 //
 // Bytes(82854982) -> 83 MB
-func Bytes(s uint64) string {
+func Bytes(s int64) string {
 	sizes := []string{"B", "kB", "MB", "GB", "TB", "PB", "EB"}
 	return humanateBytes(s, 1000, sizes)
 }
@@ -95,7 +95,7 @@ func Bytes(s uint64) string {
 // See also: ParseBytes.
 //
 // IBytes(82854982) -> 79 MiB
-func IBytes(s uint64) string {
+func IBytes(s int64) string {
 	sizes := []string{"B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"}
 	return humanateBytes(s, 1024, sizes)
 }
@@ -107,7 +107,7 @@ func IBytes(s uint64) string {
 //
 // ParseBytes("42 MB") -> 42000000, nil
 // ParseBytes("42 mib") -> 44040192, nil
-func ParseBytes(s string) (uint64, error) {
+func ParseBytes(s string) (int64, error) {
 	lastDigit := 0
 	hasComma := false
 	for _, r := range s {
@@ -136,7 +136,7 @@ func ParseBytes(s string) (uint64, error) {
 		if f >= math.MaxUint64 {
 			return 0, fmt.Errorf("too large: %v", s)
 		}
-		return uint64(f), nil
+		return int64(f), nil
 	}
 
 	return 0, fmt.Errorf("unhandled size name: %v", extra)
